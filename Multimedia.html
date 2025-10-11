@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeri Multimedia Interaktif</title>
+    <style>
+        /* Gaya CSS untuk membuat tampilan lebih menarik */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #4a90e2; /* Biru cerah */
+            margin-bottom: 30px;
+            border-bottom: 2px solid #4a90e2;
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        h2 {
+            color: #333;
+            margin-top: 40px;
+            border-left: 5px solid #ff5733; /* Oranye/Merah */
+            padding-left: 10px;
+            display: block;
+            text-align: left;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .media-container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        img {
+            max-width: 100%; /* Pastikan gambar responsif */
+            height: auto;
+            border-radius: 8px;
+            border: 3px solid #ddd;
+            transition: transform 0.3s ease;
+        }
+
+        img:hover {
+            transform: scale(1.05); /* Efek zoom saat di-hover */
+        }
+
+        audio, video {
+            width: 100%;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Galeri Multimedia WATASHI 🌸 </h1>
+    
+    <div class="media-container">
+        <h2>🖼️ Gambar Logo</h2>
+        <img src="Logo.png" width="200" alt="Logo Kampus"> 
+        <p>Logo Usaha Kami.</p>
+    </div>
+
+    <div class="media-container">
+        <h2>🎶 Audio Musik</h2>
+        <audio controls loop> <source src="HYDE - Honey (320 KBps) (1).mp3" type="audio/mpeg">
+            Browser Anda tidak mendukung elemen audio.
+        </audio>
+        <p>HONEY, HYDE.</p>
+    </div>
+
+    <div class="media-container">
+        <h2>🎬 Video Dokumentasi</h2>
+        <video width="100%" height="auto" controls poster="cover.jpeg"> <source src="Video.mp4" type="video/mp4">
+            Browser Anda tidak mendukung elemen video.
+        </video>
+        <p> Tekan putar untuk menonton.</p>
+    </div>
+
+</body>
+</html>
