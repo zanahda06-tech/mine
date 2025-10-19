@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tugas Warna - Toko Online (K'CakeShop)</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        /* Gaya tambahan opsional untuk placeholder gambar */
+        .card-img-top {
+            height: 250px;
+            object-fit: cover;
+            background-color: #f8f9fa; /* bg-light */
+            border-bottom: 1px solid #dee2e6;
+        }
+        .text-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-warning shadow-sm sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-dark" href="#">K'CakeShop</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Produk</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Promo</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-bs-toggle="offcanvas" data-bs-target="#cartOffcanvas" aria-controls="cartOffcanvas">
+                            🛒 <span class="badge rounded-pill bg-danger" id="cart-count">0</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container my-5">
+        <h1 class="text-dark text-center mb-5 display-5 fw-bold">ようこそ,Para Pencinta Kue 🍪 </h1>
+        
+        <div class="row g-4">
+            
+            <div class="col-lg-4 col-md-6 col-12">
+                <div class="card border-0 shadow h-100">
+                    <img src="https://i.pinimg.com/736x/f3/df/fa/f3dffaf7d5db005674918708092764f8.jpg" class="card-img-top" alt="Produk kue putri salju">
+                    <div class="card-body bg-light">
+                        <h5 class="card-title text-dark">Kue Putri Salju</h5>
+                        <p class="text-price text-danger">Rp 25.000</p>
+                        <p class="card-text text-secondary">Kue yang tidak terlalu manis dibalut dengan gula tepung yang manis membuat rasanya balance.</p>
+                        <a href="#" class="btn btn-danger w-100 mt-2" 
+                           data-bs-toggle="modal" 
+                           data-bs-target="#addToCartModal"
+                           data-produk-nama="Kue Putri Salju"
+                           data-produk-harga="Rp 25.000"
+                           data-produk-raw-price="25000"
+                           data-produk-deskripsi="Kue yang tidak terlalu manis dibalut dengan gula tepung yang manis membuat rasanya balance.">
+                           Beli Sekarang
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 col-12">
+                <div class="card border-0 shadow h-100">
+                    <img src="https://i.pinimg.com/736x/ac/75/fe/ac75fe78dbdf85f6b1a12c705dbd5b7e.jpg" class="card-img-top" alt="Produk Kue Kastangel">
+                    <div class="card-body bg-light">
+                        <h5 class="card-title text-dark">Kue Kastangel</h5>
+                        <p class="text-price text-danger">Rp 30.000</p>
+                        <p class="card-text text-secondary">Kue yang tidak terlalu manis dicampur dengan keju membuat rasanya gurih.</p>
+                        <a href="#" class="btn btn-danger w-100 mt-2" 
+                           data-bs-toggle="modal" 
+                           data-bs-target="#addToCartModal"
+                           data-produk-nama="Kue Kastangel"
+                           data-produk-harga="Rp 30.000"
+                           data-produk-raw-price="30000"
+                           data-produk-deskripsi="Kue yang tidak terlalu manis dicampur dengan keju membuat rasanya gurih.">
+                           Beli Sekarang
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 col-12">
+                <div class="card border-0 shadow h-100">
+                    <img src="https://i.pinimg.com/736x/20/85/71/20857151b59c16adf380de94e716de7e.jpg" class="card-img-top" alt="Produk Kue Nastar">
+                    <div class="card-body bg-light">
+                        <h5 class="card-title text-dark">Kue Nastar</h5>
+                        <p class="text-price text-danger">Rp 25.000</p>
+                        <p class="card-text text-secondary">Kue yang manis dibalur dengan kuning telur kemudian dipanggang membuat kue terlihat mengkilap.</p>
+                        <a href="#" class="btn btn-danger w-100 mt-2" 
+                           data-bs-toggle="modal" 
+                           data-bs-target="#addToCartModal"
+                           data-produk-nama="Kue Nastar"
+                           data-produk-harga="Rp 25.000"
+                           data-produk-raw-price="25000"
+                           data-produk-deskripsi="Kue yang manis dibalur dengan kuning telur kemudian dipanggang membuat kue terlihat mengkilap.">
+                           Beli Sekarang
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 col-12">
+                <div class="card border-0 shadow h-100">
+                    <img src="https://i.pinimg.com/736x/a0/76/56/a076563a20e62425db1a16e802e4cef5.jpg" class="card-img-top" alt="Produk Lidah Kucing">
+                    <div class="card-body bg-light">
+                        <h5 class="card-title text-dark">Lidah Kucing</h5>
+                        <p class="text-price text-danger">Rp 25.000</p>
+                        <p class="card-text text-secondary">Kue yang manis,tipis dan renyah .</p>
+                        <a href="#" class="btn btn-danger w-100 mt-2" 
+                           data-bs-toggle="modal" 
+                           data-bs-target="#addToCartModal"
+                           data-produk-nama="Lidah Kucing"
+                           data-produk-harga="Rp 25.000"
+                           data-produk-raw-price="25000"
+                           data-produk-deskripsi="Kue yang manis,tipis dan renyah .">
+                           Beli Sekarang
+                        </a>
+                    </div>
+                </div>
+            </div> 
+            
+            <div class="col-lg-4 col-md-6 col-12">
+                <div class="card border-0 shadow h-100">
+                    <img src="https://i.pinimg.com/736x/e0/97/a1/e097a1ef0fb4886a1894eb9fe73416d8.jpg" class="card-img-top" alt="Produk Klepon">
+                    <div class="card-body bg-light">
+                        <h5 class="card-title text-dark">Klepon</h5>
+                        <p class="text-price text-danger">Rp 10.000</p>
+                        <p class="card-text text-secondary">Kue tradisional yang manis dibalur dengan kelapa parut yang gurih .</p>
+                        <a href="#" class="btn btn-danger w-100 mt-2" 
+                           data-bs-toggle="modal" 
+                           data-bs-target="#addToCartModal"
+                           data-produk-nama="Klepon"
+                           data-produk-harga="Rp 10.000"
+                           data-produk-raw-price="10000"
+                           data-produk-deskripsi="Kue tradisional yang manis dibalur dengan kelapa parut yang gurih .">
+                           Beli Sekarang
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 col-12">
+                <div class="card border-0 shadow h-100">
+                    <img src="https://i.pinimg.com/1200x/b3/e5/52/b3e552f696c7c0bfa84ef2d55871970c.jpg" class="card-img-top" alt="Produk Bolu Kukus">
+                    <div class="card-body bg-light">
+                        <h5 class="card-title text-dark">Bolu Kukus</h5>
+                        <p class="text-price text-danger">Rp 2.500</p>
+                        <p class="card-text text-secondary">Kue tradisional yang manis dan lembut .</p>
+                        <a href="#" class="btn btn-danger w-100 mt-2" 
+                           data-bs-toggle="modal" 
+                           data-bs-target="#addToCartModal"
+                           data-produk-nama="Bolu Kukus"
+                           data-produk-harga="Rp 2.500"
+                           data-produk-raw-price="2500"
+                           data-produk-deskripsi="Kue tradisional yang manis dan lembut .">
+                           Beli Sekarang
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+
+    <div class="modal fade" id="addToCartModal" tabindex="-1" aria-labelledby="addToCartModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-warning">
+                    <h5 class="modal-title" id="addToCartModalLabel">Masukkan ke Keranjang</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h4 id="modal-produk-nama" class="text-dark">Nama Produk</h4>
+                    <p class="text-price text-danger mb-3" id="modal-produk-harga">Rp 0</p>
+                    <h6>Deskripsi Produk:</h6>
+                    <p id="modal-produk-deskripsi" class="text-secondary small">Detail deskripsi produk.</p>
+                    <form>
+                        <div class="mb-3">
+                            <label for="quantityInput" class="form-label fw-bold">Kuantitas (Kelipatan) 🔢</label>
+                            <input type="number" class="form-control" id="quantityInput" value="1" min="1" required>
+                            <div class="form-text text-muted">Masukkan jumlah kue yang ingin Anda beli (minimal 1).</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="commentsTextarea" class="form-label fw-bold">Komentar/Catatan Tambahan 📝</label>
+                            <textarea class="form-control" id="commentsTextarea" rows="3" placeholder="Contoh: Tanpa gula di bagian atas, atau dikirim sore hari."></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                    <button type="button" class="btn btn-danger btn-add-to-cart">🛒 Masukkan ke Keranjang</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="cartOffcanvas" aria-labelledby="cartOffcanvasLabel">
+      <div class="offcanvas-header bg-warning">
+        <h5 class="offcanvas-title fw-bold" id="cartOffcanvasLabel">🛒 Keranjang Belanja Anda</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <h6 class="text-muted">Produk yang dipilih:</h6>
+        <ul class="list-group mb-4" id="cart-items-list">
+          <li class="list-group-item text-center text-muted">Keranjang kosong nih! Ayo belanja.</li>
+        </ul>
+
+        <div class="card shadow-sm border-0">
+            <div class="card-body bg-light">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Total:</h5>
+                    <h4 class="mb-0 text-danger fw-bold" id="cart-total">Rp 0</h4>
+                </div>
+                <hr>
+                <button class="btn btn-success w-100 fw-bold">Checkout Sekarang</button>
+            </div>
+        </div>
+
+      </div>
+    </div>
+    <footer class="bg-dark py-3 mt-5">
+        <div class="container">
+            <p class="text-warning text-center mb-0">&copy; 2025 K'CakeShop. Maniskan Hari, Makan Manis.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // 1. DATA STRUKTUR KERANJANG
+        let cart = [];
+
+        // Helper untuk memformat angka menjadi mata uang Rupiah
+        function formatRupiah(number) {
+            return 'Rp ' + number.toLocaleString('id-ID');
+        }
+
+        // 2. FUNGSI MENGHAPUS ITEM DARI KERANJANG
+        function removeFromCart(id) {
+            // Filter array cart: simpan semua item yang ID-nya TIDAK sama dengan ID yang mau dihapus
+            cart = cart.filter(item => item.id !== id);
+            
+            // Render ulang keranjang setelah penghapusan
+            renderCart();
+            // Beri notifikasi (opsional)
+            console.log(`Produk dengan ID ${id} telah dihapus.`);
+        }
+
+        // 3. FUNGSI MERENDER KERANJANG
+        function renderCart() {
+            const cartList = document.getElementById('cart-items-list');
+            const cartTotalElement = document.getElementById('cart-total');
+            const cartCountElement = document.getElementById('cart-count');
+            let total = 0;
+            
+            cartList.innerHTML = '';
+            
+            // Hitung total item yang berbeda (untuk badge di Navbar)
+            cartCountElement.textContent = cart.length;
+
+            if (cart.length === 0) {
+                cartList.innerHTML = '<li class="list-group-item text-center text-muted">Keranjang kosong nih! Ayo belanja.</li>';
+            } else {
+                cart.forEach((item) => {
+                    const subtotal = item.rawPrice * item.quantity;
+                    total += subtotal;
+
+                    const listItem = document.createElement('li');
+                    // Tambahkan d-flex untuk layout dan my-2 untuk jarak antar item
+                    listItem.className = 'list-group-item d-flex justify-content-between align-items-center p-3'; 
+                    
+                    const notesHtml = item.notes ? `<p class="mb-0 small text-muted">Catatan: ${item.notes}</p>` : '';
+
+                    listItem.innerHTML = `
+                        <div class="me-auto">
+                            <h6 class="mb-0 text-dark">${item.name} <span class="badge bg-warning text-dark">${item.quantity}x</span></h6>
+                            <span class="text-secondary small">${formatRupiah(item.rawPrice)}/item</span>
+                            ${notesHtml}
+                        </div>
+                        <div class="text-end">
+                            <span class="fw-bold text-danger d-block mb-1">${formatRupiah(subtotal)}</span>
+                            <button class="btn btn-sm btn-outline-danger" onclick="removeFromCart(${item.id})">
+                                <i class="bi bi-trash"></i> Hapus
+                            </button>
+                        </div>
+                    `;
+                    cartList.appendChild(listItem);
+                });
+            }
+
+            // Tampilkan total
+            cartTotalElement.textContent = formatRupiah(total);
+        }
+
+        // 4. FUNGSI MENAMBAH ITEM KE KERANJANG (Diperbarui dengan Date.now() untuk ID)
+        function addToCart(name, rawPrice, quantity, notes) {
+            const newItem = {
+                // ID unik yang dibutuhkan untuk fungsi hapus
+                id: Date.now(), 
+                name: name,
+                rawPrice: rawPrice,
+                quantity: parseInt(quantity),
+                notes: notes
+            };
+
+            cart.push(newItem);
+            
+            // Tutup modal
+            const modalElement = document.getElementById('addToCartModal');
+            const modal = bootstrap.Modal.getInstance(modalElement);
+            if (modal) {
+                modal.hide();
+            }
+
+            // Render ulang keranjang
+            renderCart();
+            
+            // Tampilkan Offcanvas (opsional)
+            const offcanvasElement = document.getElementById('cartOffcanvas');
+            const offcanvas = new bootstrap.Offcanvas(offcanvasElement);
+            offcanvas.show();
+        }
+
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // A. LOGIKA UNTUK MEMUAT DATA PRODUK KE MODAL (Sama seperti sebelumnya)
+            const cartModal = document.getElementById('addToCartModal');
+            cartModal.addEventListener('show.bs.modal', event => {
+                const button = event.relatedTarget;
+                const nama = button.getAttribute('data-produk-nama');
+                const harga = button.getAttribute('data-produk-harga');
+                const rawPrice = button.getAttribute('data-produk-raw-price');
+                const deskripsi = button.getAttribute('data-produk-deskripsi');
+
+                const modalTitle = cartModal.querySelector('#addToCartModalLabel');
+                const modalNama = cartModal.querySelector('#modal-produk-nama');
+                const modalHarga = cartModal.querySelector('#modal-produk-harga');
+                const modalDeskripsi = cartModal.querySelector('#modal-produk-deskripsi');
+                const quantityInput = cartModal.querySelector('#quantityInput');
+                const commentsTextarea = cartModal.querySelector('#commentsTextarea');
+                const modalAddToCartBtn = cartModal.querySelector('.btn-add-to-cart');
+
+                modalTitle.textContent = 'Tambahkan ' + nama + ' ke Keranjang';
+                modalNama.textContent = nama;
+                modalHarga.textContent = harga;
+                modalDeskripsi.textContent = deskripsi;
+
+                modalAddToCartBtn.setAttribute('data-product-name', nama);
+                modalAddToCartBtn.setAttribute('data-product-raw-price', rawPrice); 
+
+                quantityInput.value = 1; 
+                commentsTextarea.value = '';
+            });
+
+            // B. LOGIKA UNTUK TOMBOL "MASUKKAN KE KERANJANG" DI DALAM MODAL (Sama seperti sebelumnya)
+            const addToCartButton = cartModal.querySelector('.btn-add-to-cart'); 
+            addToCartButton.addEventListener('click', function() {
+                const name = this.getAttribute('data-product-name');
+                const rawPrice = parseFloat(this.getAttribute('data-product-raw-price'));
+                const quantity = document.getElementById('quantityInput').value;
+                const notes = document.getElementById('commentsTextarea').value.trim();
+                
+                if (parseInt(quantity) > 0) {
+                    addToCart(name, rawPrice, quantity, notes);
+                } else {
+                    alert('Kuantitas harus minimal 1.');
+                }
+            });
+            
+            // C. Inisialisasi tampilan keranjang awal
+            renderCart();
+        });
+    </script>
+</body>
+</html>
