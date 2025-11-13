@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>K'CakeShop - Toko Online Manis</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        /* Gaya Tailwind (simulasi) dan Bootstrap Kustom */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f7f7; /* Light background */
+        }
+        .card-img-top { 
+            height: 250px; 
+            object-fit: cover; 
+            background-color: #f8f9fa; 
+            border-bottom: 1px solid #dee2e6;
+            border-top-left-radius: 0.5rem;
+            border-top-right-radius: 0.5rem;
+        }
+        .text-price { 
+            font-size: 1.5rem; 
+            font-weight: bold; 
+            color: #dc3545; /* text-danger */
+        }
+        .promo-badge { 
+            font-size: 0.75rem; 
+            padding: 0.2em 0.5em; 
+            margin-left: 5px; 
+            vertical-align: middle; 
+            border-radius: 0.3rem;
+        }
+
+        /* Welcome Screen */
+        #welcome-screen {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background-color: #ffc107; /* bg-warning */
+            display: flex; align-items: center; justify-content: center;
+            z-index: 10000; transition: opacity 0.5s ease-out;
+        }
+        .welcome-content h1 {
+            color: #343a40; /* text-dark */
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        /* Modal About */
+        .about-photo {
+            width: 120px; height: 120px; border-radius: 50%;
+            object-fit: cover; margin-bottom: 15px;
+            border: 5px solid #ffc107; /* Kuning cerah */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        /* Offcanvas cart adjustments */
+        #cartOffcanvas .offcanvas-header {
+            background-color: #ffc107;
+            border-bottom: 2px solid #e9ecef;
+        }
+
+        .card.shadow {
+            border-radius: 0.75rem;
+        }
+
+    </style>
+</head>
+<body>
+
+<!-- WELCOME SCREEN -->
+<div id="welcome-screen">
+    <div class="welcome-content text-center">
+        <h1 class="display-3 fw-bold text-dark mb-4">ようこそ!!</h1>
+        <button class="btn btn-danger btn-lg shadow-lg rounded-pill px-5 py-3" id="start-button">Let's Eat ❣️</button>
+    </div>
+</div>
+
+<!-- KONTEN UTAMA -->
+<div id="main-content" style="display: none;">
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-warning shadow-md sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-dark fs-4" href="#">K'CakeShop</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link active" href="#">Produk</a></li>
+                    
+                    <!-- Tautan Kontak Baru -->
+                    <li class="nav-item">
+                        <a class="nav-link text-dark fw-bold" href="https://www.instagram.com/eidc.ake?igsh=MWpraDdidm82aDVsMw==" target="_blank">
+                            Kontak <i class="bi bi-instagram"></i>
+                        </a>
+                    </li>
+                    <!-- Akhir Tautan Kontak Baru -->
+
+                    <li class="nav-item" id="promo-link-container">
+                        <!-- Konten Promo diisi oleh JS -->
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-bs-toggle="offcanvas" data-bs-target="#cartOffcanvas">
+                            🛒 <span class="badge rounded-pill bg-danger" id="cart-count">0</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark fw-bold" href="#" data-bs-toggle="modal" data-bs-target="#aboutModal">Tentang Kami</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- PRODUK -->
+    <div class="container my-5">
+        <h1 class="text-warning text-center mb-5 display-5 fw-bold">ようこそ, Para Pencinta Kue 🍪 </h1>
+        
+        <div class="row g-4" id="product-list">
+            <!-- Produk 1: Kue Putri Salju -->
+            <div class="col-lg-4 col-md-6 col-12">
+                <div class="card border-0 shadow-lg h-100 rounded-lg">
+                    <img src="https://i.pinimg.com/736x/f3/df/fa/f3dffaf7d5db005674918708092764f8.jpg" class="card-img-top" alt="Produk kue putri salju" onerror="this.onerror=null;this.src='https://placehold.co/400x250/fff456/dc3545?text=Putri+Salju'">
+                    <div class="card-body bg-white p-4">
+                        <h5 class="card-title text-dark fw-bold">Kue Putri Salju</h5>
+                        <p class="text-price mb-2">Rp 25.000</p>
+                        <p class="card-text text-secondary small">Kue yang tidak terlalu manis dibalut dengan gula tepung yang manis membuat rasanya *balance*.</p>
+                        <a href="#" class="btn btn-danger w-100 mt-2 rounded-pill fw-bold" 
+                            data-bs-toggle="modal" 
+                            data-bs-target="#addToCartModal"
+                            data-produk-nama="Kue Putri Salju"
+                            data-produk-harga="Rp 25.000"
+                            data-produk-raw-price="25000"
+                            data-produk-deskripsi="Kue yang tidak terlalu manis dibalut dengan gula tepung yang manis membuat rasanya balance.">
+                            Beli Sekarang
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Produk 2: Kue Kastangel -->
+            <div class="col-lg-4 col-md-6 col-12">
+                <div class="card border-0 shadow-lg h-100 rounded-lg">
+                    <img src="https://i.pinimg.com/736x/ac/75/fe/ac75fe78dbdf85f6b1a12c705dbd5b7e.jpg" class="card-img-top" alt="Produk Kue Kastangel" onerror="this.onerror=null;this.src='https://placehold.co/400x250/fff456/dc3545?text=Kastangel'">
+                    <div class="card-body bg-white p-4">
+                        <h5 class="card-title text-dark fw-bold">Kue Kastangel</h5>
+                        <p class="text-price mb-2">Rp 30.000</p>
+                        <p class="card-text text-secondary small">Kue yang tidak terlalu manis dicampur dengan keju membuat rasanya gurih.</p>
+                        <a href="#" class="btn btn-danger w-100 mt-2 rounded-pill fw-bold" 
+                            data-bs-toggle="modal" 
+                            data-bs-target="#addToCartModal"
+                            data-produk-nama="Kue Kastangel"
+                            data-produk-harga="Rp 30.000"
+                            data-produk-raw-price="30000"
+                            data-produk-deskripsi="Kue yang tidak terlalu manis dicampur dengan keju membuat rasanya gurih.">
+                            Beli Sekarang
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Produk 3: Kue Nastar -->
+            <div class="col-lg-4 col-md-6 col-12">
+                <div class="card border-0 shadow-lg h-100 rounded-lg">
+                    <img src="https://i.pinimg.com/736x/20/85/71/20857151b59c16adf380de94e716de7e.jpg" class="card-img-top" alt="Produk Kue Nastar" onerror="this.onerror=null;this.src='https://placehold.co/400x250/fff456/dc3545?text=Nastar'">
+                    <div class="card-body bg-white p-4">
+                        <h5 class="card-title text-dark fw-bold">Kue Nastar</h5>
+                        <p class="text-price mb-2">Rp 30.000</p>
+                        <p class="card-text text-secondary small">Kue yang manis dibalur dengan kuning telur kemudian dipanggang membuat kue terlihat mengkilap.</p>
+                        <a href="#" class="btn btn-danger w-100 mt-2 rounded-pill fw-bold" 
+                            data-bs-toggle="modal" 
+                            data-bs-target="#addToCartModal"
+                            data-produk-nama="Kue Nastar"
+                            data-produk-harga="Rp 30.000"
+                            data-produk-raw-price="30000"
+                            data-produk-deskripsi="Kue yang manis dibalur dengan kuning telur kemudian dipanggang membuat kue terlihat mengkilap.">
+                            Beli Sekarang
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Produk 4: Lidah Kucing -->
+            <div class="col-lg-4 col-md-6 col-12">
+                <div class="card border-0 shadow-lg h-100 rounded-lg">
+                    <img src="https://i.pinimg.com/736x/a0/76/56/a076563a20e62425db1a16e802e4cef5.jpg" class="card-img-top" alt="Produk Lidah Kucing" onerror="this.onerror=null;this.src='https://placehold.co/400x250/fff456/dc3545?text=Lidah+Kucing'">
+                    <div class="card-body bg-white p-4">
+                        <h5 class="card-title text-dark fw-bold">Lidah Kucing</h5>
+                        <p class="text-price mb-2">Rp 25.000</p>
+                        <p class="card-text text-secondary small">Kue yang manis, tipis dan renyah.</p>
+                        <a href="#" class="btn btn-danger w-100 mt-2 rounded-pill fw-bold" 
+                            data-bs-toggle="modal" 
+                            data-bs-target="#addToCartModal"
+                            data-produk-nama="Lidah Kucing"
+                            data-produk-harga="Rp 25.000"
+                            data-produk-raw-price="25000"
+                            data-produk-deskripsi="Kue yang manis,tipis dan renyah.">
+                            Beli Sekarang
+                        </a>
+                    </div>
+                </div> 
+            </div>
+            
+            <!-- Produk 5: Klepon -->
+            <div class="col-lg-4 col-md-6 col-12">
+                <div class="card border-0 shadow-lg h-100 rounded-lg">
+                    <img src="https://i.pinimg.com/736x/e0/97/a1/e097a1ef0fb4886a1894eb9fe73416d8.jpg" class="card-img-top" alt="Produk Klepon" onerror="this.onerror=null;this.src='https://placehold.co/400x250/fff456/dc3545?text=Klepon'">
+                    <div class="card-body bg-white p-4">
+                        <h5 class="card-title text-dark fw-bold">Klepon</h5>
+                        <p class="text-price mb-2">Rp 10.000</p>
+                        <p class="card-text text-secondary small">Kue tradisional yang manis dibalur dengan kelapa parut yang gurih.</p>
+                        <a href="#" class="btn btn-danger w-100 mt-2 rounded-pill fw-bold" 
+                            data-bs-toggle="modal" 
+                            data-bs-target="#addToCartModal"
+                            data-produk-nama="Klepon"
+                            data-produk-harga="Rp 10.000"
+                            data-produk-raw-price="10000"
+                            data-produk-deskripsi="Kue tradisional yang manis dibalur dengan kelapa parut yang gurih.">
+                            Beli Sekarang
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Produk 6: Bolu Kukus -->
+            <div class="col-lg-4 col-md-6 col-12">
+                <div class="card border-0 shadow-lg h-100 rounded-lg">
+                    <img src="https://i.pinimg.com/1200x/b3/e5/52/b3e552f696c7c0bfa84ef2d55871970c.jpg" class="card-img-top" alt="Produk Bolu Kukus" onerror="this.onerror=null;this.src='https://placehold.co/400x250/fff456/dc3545?text=Bolu+Kukus'">
+                    <div class="card-body bg-white p-4">
+                        <h5 class="card-title text-dark fw-bold">Bolu Kukus</h5>
+                        <p class="text-price mb-2">Rp 2.500</p>
+                        <p class="card-text text-secondary small">Kue tradisional yang manis dan lembut.</p>
+                        <a href="#" class="btn btn-danger w-100 mt-2 rounded-pill fw-bold" 
+                            data-bs-toggle="modal" 
+                            data-bs-target="#addToCartModal"
+                            data-produk-nama="Bolu Kukus"
+                            data-produk-harga="Rp 2.500"
+                            data-produk-raw-price="2500"
+                            data-produk-deskripsi="Kue tradisional yang manis dan lembut.">
+                            Beli Sekarang
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Produk 7: Fudgy Brownies -->
+            <div class="col-lg-4 col-md-6 col-12">
+                <div class="card border-0 shadow-lg h-100 rounded-lg">
+                    <img src="https://github.com/zanahda06-tech/mine/blob/main/brownies.jpeg?raw=true" class="card-img-top" alt="Produk Fudgy Brownies" onerror="this.onerror=null;this.src='https://placehold.co/400x250/fff456/dc3545?text=Brownies'">
+                    <div class="card-body bg-white p-4">
+                        <h5 class="card-title text-dark fw-bold">Fudgy Brownies</h5>
+                        <p class="text-price mb-2">Rp 35.000</p>
+                        <p class="card-text text-secondary small">Memiliki tekstur padat, lembut, sedikit basah, dan lengket di bagian dalam, dengan rasa cokelat yang sangat kaya dan intens (Box 20x10x5).</p>
+                        <a href="#" class="btn btn-danger w-100 mt-2 rounded-pill fw-bold" 
+                            data-bs-toggle="modal" 
+                            data-bs-target="#addToCartModal"
+                            data-produk-nama="Fudgy Brownies"
+                            data-produk-harga="Rp 35.000"
+                            data-produk-raw-price="35000"
+                            data-produk-deskripsi="Memiliki tekstur padat, lembut, sedikit basah, dan lengket di bagian dalam, dengan rasa cokelat yang sangat kaya dan intens ( Box 20x10x5) .">
+                            Beli Sekarang
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Produk 8: Cupcake -->
+            <div class="col-lg-4 col-md-6 col-12">
+                <div class="card border-0 shadow-lg h-100 rounded-lg">
+                    <img src="https://github.com/zanahda06-tech/mine/blob/main/cupcake.jpeg?raw=true" class="card-img-top" alt="Produk Cupcake" onerror="this.onerror=null;this.src='https://placehold.co/400x250/fff456/dc3545?text=Cupcake'">
+                    <div class="card-body bg-white p-4">
+                        <h5 class="card-title text-dark fw-bold">Cupcake</h5>
+                        <p class="text-price mb-2">Rp 6.000</p>
+                        <p class="card-text text-secondary small">Teksturnya lembut dan manis dipadukan dengan krim yang tidak terlalu manis membuat rasanya seimbang.</p>
+                        <a href="#" class="btn btn-danger w-100 mt-2 rounded-pill fw-bold" 
+                            data-bs-toggle="modal" 
+                            data-bs-target="#addToCartModal"
+                            data-produk-nama="Cupcake"
+                            data-produk-harga="Rp 6.000"
+                            data-produk-raw-price="6000"
+                            data-produk-deskripsi="Teksturnya lembut dan manis dipadukan dengan krim yang tidak terlalu manis membuat rasanya seimbang.">
+                            Beli Sekarang
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Produk 9: Bakpao -->
+            <div class="col-lg-4 col-md-6 col-12">
+                <div class="card border-0 shadow-lg h-100 rounded-lg">
+                    <img src="https://github.com/zanahda06-tech/mine/blob/main/bakpao.jpeg?raw=true" class="card-img-top" alt="Produk Bakpao" onerror="this.onerror=null;this.src='https://placehold.co/400x250/fff456/dc3545?text=Bakpao'">
+                    <div class="card-body bg-white p-4">
+                        <h5 class="card-title text-dark fw-bold">Bakpao</h5>
+                        <p class="text-price mb-2">Rp 2.500</p>
+                        <p class="card-text text-secondary small">Roti kukus yang lembut dan empuk, diisi dengan selai coklat yang manis.</p>
+                        <a href="#" class="btn btn-danger w-100 mt-2 rounded-pill fw-bold" 
+                            data-bs-toggle="modal" 
+                            data-bs-target="#addToCartModal"
+                            data-produk-nama="Bakpao"
+                            data-produk-harga="Rp 2.500"
+                            data-produk-raw-price="2500"
+                            data-produk-deskripsi="roti kukus yang lembut dan empuk, diisi dengan selai coklat yang manis.">
+                            Beli Sekarang
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+
+    <!-- MODAL TAMBAH KE KERANJANG -->
+    <div class="modal fade" id="addToCartModal" tabindex="-1" aria-labelledby="addToCartModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow-lg rounded-xl">
+                <div class="modal-header bg-warning text-dark border-0">
+                    <h5 class="modal-title fw-bold" id="addToCartModalLabel">Masukkan ke Keranjang</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4 bg-light">
+                    <h4 id="modal-produk-nama" class="text-dark fw-bold mb-1">Nama Produk</h4>
+                    <p class="text-price mb-3" id="modal-produk-harga">Rp 0</p>
+                    <p id="modal-produk-deskripsi" class="text-secondary small border-start border-3 border-warning ps-2 pb-2">Detail deskripsi produk.</p>
+                    
+                    <div id="modal-error-message" class="alert alert-danger d-none" role="alert"></div>
+
+                    <form>
+                        <div class="mb-3">
+                            <label for="quantityInput" class="form-label fw-bold">Kuantitas (Kelipatan) 🔢</label>
+                            <input type="number" class="form-control" id="quantityInput" value="1" min="1" required>
+                            <div class="form-text text-muted">Masukkan jumlah kue yang ingin Anda beli (minimal 1).</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="commentsTextarea" class="form-label fw-bold">Komentar/Catatan Tambahan 📝</label>
+                            <textarea class="form-control" id="commentsTextarea" rows="3" placeholder="Contoh: Tanpa gula di bagian atas, atau dikirim sore hari."></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer border-0 bg-white">
+                    <button type="button" class="btn btn-secondary rounded-pill" data-bs-dismiss="modal">Tutup</button>
+                    <button type="button" class="btn btn-danger rounded-pill fw-bold btn-add-to-cart">🛒 Masukkan ke Keranjang</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- OFFCANVAS KERANJANG -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="cartOffcanvas" aria-labelledby="cartOffcanvasLabel">
+        <div class="offcanvas-header bg-warning">
+            <h5 class="offcanvas-title fw-bold text-dark" id="cartOffcanvasLabel">🛒 Keranjang Belanja Anda</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <h6 class="text-muted">Produk yang dipilih:</h6>
+            <ul class="list-group mb-4 border-0 shadow-sm" id="cart-items-list">
+                <!-- Item keranjang akan dirender di sini -->
+            </ul>
+
+            <div class="card shadow-lg border-0 rounded-xl">
+                <div class="card-body bg-white p-4">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <p class="mb-0 text-secondary">Subtotal:</p>
+                        <p class="mb-0 text-secondary fw-semibold" id="cart-subtotal">Rp 0</p>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center mb-2" id="discount-area">
+                        <!-- Area diskon diisi oleh JS -->
+                    </div>
+                    <hr>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0 text-dark fw-bold">Total Akhir:</h5>
+                        <h4 class="mb-0 text-danger fw-bolder" id="cart-total">Rp 0</h4>
+                    </div>
+                    <hr>
+                    <button class="btn btn-success w-100 fw-bold rounded-pill shadow-sm" onclick="checkoutWhatsApp()">
+                        <i class="bi bi-whatsapp"></i> Checkout via WhatsApp
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- MODAL ABOUT -->
+    <div class="modal fade" id="aboutModal" tabindex="-1" aria-labelledby="aboutModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow-lg rounded-xl">
+                <div class="modal-header bg-warning text-dark border-0">
+                    <h5 class="modal-title fw-bold" id="aboutModalLabel">Tentang Kami 🍰</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body text-center bg-light p-5">
+                    <img src="https://github.com/zanahda06-tech/mine/blob/main/prop.png?raw=true" alt="Foto Profil" class="about-photo shadow-lg" onerror="this.onerror=null;this.src='https://placehold.co/120x120/ffc107/dc3545?text=K'">
+                    <h5 class="fw-bold mt-3 text-dark">Zantika Ahda Bani Rifkia</h5>
+                    <p class="text-muted mb-3">Owner K’CakeShop</p>
+                    <p class="text-muted mb-3">Lokasi : Jl. Garuda 7 No.53, Sutawinangun, Kec. Kedawung, Kabupaten Cirebon, Jawa Barat 45153 </p>
+                    <p class="text-secondary small">
+                        Bisnis ini berfokus pada produksi dan penjualan kue-kue Lebaran dan makanan manis yang dibuat secara homemade. Keunggulan utamanya adalah penggunaan bahan-bahan alami dan berkualitas serta menjamin produk 100% bebas dari pengawet, pewarna sintetis, dan pemanis buatan yang berbahaya.
+                    </p>
+                </div>
+                <div class="modal-footer bg-warning border-0">
+                    <button type="button" class="btn btn-light rounded-pill fw-bold" data-bs-dismiss="modal">Tutup</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-dark py-4 mt-5">
+        <div class="container">
+            <p class="text-warning text-center mb-0 small">&copy; 2025 K'CakeShop. Maniskan Hari, Makan Manis.</p>
+        </div>
+    </footer>
+</div>
+
+<!-- SCRIPT -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    // Konfigurasi
+    const WA_NUMBER = '6285624822354'; 
+    const PROMO_DISCOUNT = 0.20; // 20%
+    const PROMO_DAY = 5; // 0=Minggu, 1=Senin, ..., 5=Jumat, 6=Sabtu
+
+    // 1. DATA STRUKTUR KERANJANG
+    let cart = [];
+
+    // Variabel untuk menyimpan status promo terakhir
+    let lastPromoStatus = false;
+    let countdownInterval;
+
+    // Helper untuk memformat angka menjadi mata uang Rupiah
+    function formatRupiah(number) {
+        return 'Rp ' + number.toLocaleString('id-ID', { maximumFractionDigits: 0 });
+    }
+    
+    // Helper untuk mendapatkan subtotal harga mentah (tanpa diskon)
+    function getCartSubtotalRaw() {
+        let total = 0;
+        cart.forEach(item => {
+            total += item.rawPrice * item.quantity;
+        });
+        return total;
+    }
+
+    // FUNGSI PROMO
+    function isPromoActive() {
+        const today = new Date();
+        // Untuk testing, bisa diganti ke hari ini: 
+        // return today.getDay() === today.getDay(); 
+        return today.getDay() === PROMO_DAY; 
+    }
+
+    // FUNGSI MENGHAPUS ITEM DARI KERANJANG
+    function removeFromCart(id) {
+        cart = cart.filter(item => item.id !== id);
+        renderCart();
+    }
+
+    // FUNGSI MERENDER KERANJANG
+    function renderCart() {
+        const cartList = document.getElementById('cart-items-list');
+        const cartSubtotalElement = document.getElementById('cart-subtotal');
+        const cartTotalElement = document.getElementById('cart-total');
+        const cartCountElement = document.getElementById('cart-count');
+        const discountArea = document.getElementById('discount-area');
+        
+        let subtotalRaw = getCartSubtotalRaw();
+        let finalTotal = subtotalRaw;
+        
+        cartList.innerHTML = '';
+        cartCountElement.textContent = cart.length;
+        discountArea.innerHTML = '';
+
+        const checkoutButton = document.querySelector('#cartOffcanvas .btn-success.w-100');
+
+        if (cart.length === 0) {
+            cartList.innerHTML = '<li class="list-group-item text-center text-muted border-0 py-4">Keranjang kosong nih! Ayo belanja.</li>';
+            if (checkoutButton) checkoutButton.disabled = true;
+        } else {
+            if (checkoutButton) checkoutButton.disabled = false;
+            
+            cart.forEach((item) => {
+                const subtotal = item.rawPrice * item.quantity;
+                const notesHtml = item.notes ? `<p class="mb-0 small text-muted">📝 Catatan: ${item.notes}</p>` : '';
+
+                const listItem = document.createElement('li');
+                listItem.className = 'list-group-item d-flex justify-content-between align-items-center p-3 border-0 rounded-sm mb-2 shadow-sm'; 
+                listItem.innerHTML = `
+                    <div class="me-auto">
+                        <h6 class="mb-0 text-dark fw-semibold">${item.name} <span class="badge bg-warning text-dark">${item.quantity}x</span></h6>
+                        <span class="text-secondary small d-block mb-1">${formatRupiah(item.rawPrice)}/item</span>
+                        ${notesHtml}
+                    </div>
+                    <div class="text-end">
+                        <span class="fw-bold text-danger d-block mb-1">${formatRupiah(subtotal)}</span>
+                        <button class="btn btn-sm btn-outline-danger" onclick="removeFromCart(${item.id})">
+                            <i class="bi bi-trash"></i> Hapus
+                        </button>
+                    </div>
+                `;
+                cartList.appendChild(listItem);
+            });
+        }
+        
+        // Tampilkan subtotal awal
+        cartSubtotalElement.textContent = formatRupiah(subtotalRaw);
+
+        // LOGIKA DISKON
+        if (isPromoActive() && subtotalRaw > 0) {
+            const discountAmount = subtotalRaw * PROMO_DISCOUNT;
+            finalTotal = subtotalRaw - discountAmount;
+
+            discountArea.innerHTML = `
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <p class="mb-0 text-success fw-bold">Diskon Promo Jumat (20%):</p>
+                    <p class="mb-0 text-success fw-bold">- ${formatRupiah(discountAmount)}</p>
+                </div>
+            `;
+        }
+
+        // Tampilkan total akhir
+        cartTotalElement.textContent = formatRupiah(finalTotal);
+    }
+
+    // FUNGSI MENAMBAH ITEM KE KERANJANG
+    function addToCart(name, rawPrice, quantity, notes) {
+        const newItem = {
+            id: Date.now(), 
+            name: name,
+            rawPrice: rawPrice,
+            quantity: parseInt(quantity),
+            notes: notes
+        };
+
+        cart.push(newItem);
+        
+        const modalElement = document.getElementById('addToCartModal');
+        const modal = bootstrap.Modal.getInstance(modalElement);
+        if (modal) {
+            modal.hide();
+        }
+
+        renderCart();
+        
+        // Tampilkan offcanvas
+        const offcanvasElement = document.getElementById('cartOffcanvas');
+        const offcanvas = new bootstrap.Offcanvas(offcanvasElement);
+        offcanvas.show();
+    }
+
+    // FUNGSI CHECKOUT VIA WHATSAPP
+    function checkoutWhatsApp() {
+        if (cart.length === 0) {
+            // Gunakan modal alert jika keranjang kosong
+            const errorMessage = document.getElementById('modal-error-message');
+            if (errorMessage) {
+                errorMessage.textContent = 'Keranjang belanja Anda masih kosong! Silakan tambahkan kue untuk melanjutkan.';
+                errorMessage.classList.remove('d-none');
+            }
+            return;
+        }
+
+        let message = "Halo K'CakeShop! Saya ingin memesan kue berikut:\n\n";
+        let subtotalRaw = getCartSubtotalRaw();
+        let finalTotal = subtotalRaw;
+        let discountApplied = 0;
+
+        // 1. Daftar Item
+        cart.forEach((item, index) => {
+            const subtotal = item.rawPrice * item.quantity;
+            const notes = item.notes ? `(Catatan: ${item.notes})` : '';
+            
+            message += `${index + 1}. *${item.name}* (x${item.quantity})\n`;
+            message += `  Subtotal: ${formatRupiah(subtotal)} ${notes}\n`;
+        });
+
+        // 2. Ringkasan Harga
+        message += "\n-------------------------------------\n";
+        message += `Subtotal: ${formatRupiah(subtotalRaw)}\n`;
+
+        if (isPromoActive() && subtotalRaw > 0) {
+            discountApplied = subtotalRaw * PROMO_DISCOUNT;
+            finalTotal = subtotalRaw - discountApplied;
+            message += `Diskon Promo Jumat (20%): -${formatRupiah(discountApplied)}\n`;
+        }
+        
+        // 3. Total
+        message += `💰 *TOTAL AKHIR:* ${formatRupiah(finalTotal)}\n`;
+        message += "-------------------------------------\n\n";
+        message += "Mohon konfirmasi pesanan dan instruksi pembayaran/pengiriman selanjutnya ya. Terima kasih!";
+
+        // Encode dan kirim
+        const encodedMessage = encodeURIComponent(message);
+        const whatsappUrl = `https://wa.me/${WA_NUMBER}?text=${encodedMessage}`;
+        window.open(whatsappUrl, '_blank');
+    }
+    
+    // FUNGSI COUNTDOWN JUMAT
+    function updateCountdown() {
+        const now = new Date();
+        const today = now.getDay(); 
+        const targetDay = PROMO_DAY; 
+        const promoLinkContainer = document.getElementById('promo-link-container');
+        
+        // Periksa perubahan status promo
+        const currentPromoStatus = isPromoActive();
+        if (currentPromoStatus !== lastPromoStatus) {
+            renderCart();
+            lastPromoStatus = currentPromoStatus;
+        }
+
+        // 1. Cek apakah promo sedang AKTIF (Hari Jumat)
+        if (currentPromoStatus) {
+            // Promo AKTIF: Tampilkan pesan aktif dan Hentikan timer
+            if (countdownInterval) {
+                clearInterval(countdownInterval); 
+                countdownInterval = null; 
+            }
+
+            promoLinkContainer.innerHTML = `
+                <a class="nav-link text-success fw-bold animate-pulse" href="#">
+                    <span class="badge bg-success promo-badge me-2">LIVE!</span> DISKON 20% AKTIF SEKARANG!
+                </a>
+            `;
+            return; 
+        }
+
+        // 2. Promo BELUM AKTIF: Hitung mundur menuju 00:00:00 Jumat berikutnya
+        
+        let daysUntilTarget = targetDay - today;
+        if (daysUntilTarget < 0) {
+            daysUntilTarget += 7;
+        }
+        
+        // Hitung waktu menuju hari Jumat 00:00:00
+        const targetTime = new Date(now.getTime());
+        targetTime.setDate(now.getDate() + daysUntilTarget);
+        targetTime.setHours(0, 0, 0, 0);
+
+        const distance = targetTime.getTime() - now.getTime();
+        
+        // Jika countdown sudah melewati (seharusnya ditangani oleh logika di atas, tapi ini sebagai fallback)
+        if (distance < 0) {
+            targetTime.setDate(targetTime.getDate() + 7);
+            const distance = targetTime.getTime() - now.getTime();
+        }
+        
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        const d = days > 0 ? days + 'h ' : ''; // 'h' untuk hari
+        const h = String(hours).padStart(2, '0');
+        const m = String(minutes).padStart(2, '0');
+        const s = String(seconds).padStart(2, '0');
+        
+        promoLinkContainer.innerHTML = `
+            <a class="nav-link text-danger fw-bold" href="#">
+                PROMO JUMAT (Mulai dalam)
+                <span class="badge bg-danger promo-badge">${d}${h}:${m}:${s}</span>
+            </a>
+        `;
+        
+        if (!countdownInterval) {
+            countdownInterval = setInterval(updateCountdown, 1000);
+        }
+    }
+    
+    // Inisialisasi Aplikasi Saat DOM Selesai Dimuat
+    document.addEventListener('DOMContentLoaded', function () {
+        
+        // START BUTTON LOGIC
+        const startButton = document.getElementById('start-button');
+        const welcomeScreen = document.getElementById('welcome-screen');
+        const mainContent = document.getElementById('main-content');
+
+        startButton.addEventListener('click', function() {
+            welcomeScreen.style.opacity = '0';
+            
+            setTimeout(() => {
+                welcomeScreen.style.display = 'none';
+            }, 500); 
+
+            mainContent.style.display = 'block';
+        });
+
+        // MODAL LOGIC (Displaying Product Details)
+        const cartModal = document.getElementById('addToCartModal');
+        const modalErrorMessage = document.getElementById('modal-error-message');
+
+        cartModal.addEventListener('show.bs.modal', event => {
+            const button = event.relatedTarget;
+            const nama = button.getAttribute('data-produk-nama');
+            const harga = button.getAttribute('data-produk-harga');
+            const rawPrice = button.getAttribute('data-produk-raw-price');
+            const deskripsi = button.getAttribute('data-produk-deskripsi');
+
+            const modalTitle = cartModal.querySelector('#addToCartModalLabel');
+            const modalNama = cartModal.querySelector('#modal-produk-nama');
+            const modalHarga = cartModal.querySelector('#modal-produk-harga');
+            const modalDeskripsi = cartModal.querySelector('#modal-produk-deskripsi');
+            const quantityInput = cartModal.querySelector('#quantityInput');
+            const commentsTextarea = cartModal.querySelector('#commentsTextarea');
+            const modalAddToCartBtn = cartModal.querySelector('.btn-add-to-cart');
+
+            modalTitle.textContent = 'Tambahkan ' + nama + ' ke Keranjang';
+            modalNama.textContent = nama;
+            modalHarga.textContent = harga;
+            modalDeskripsi.textContent = deskripsi;
+
+            modalAddToCartBtn.setAttribute('data-product-name', nama);
+            modalAddToCartBtn.setAttribute('data-product-raw-price', rawPrice); 
+
+            // Reset input dan error
+            quantityInput.value = 1; 
+            commentsTextarea.value = '';
+            modalErrorMessage.classList.add('d-none');
+            modalErrorMessage.textContent = '';
+        });
+
+        // ADD TO CART BUTTON LOGIC
+        const addToCartButton = cartModal.querySelector('.btn-add-to-cart'); 
+        addToCartButton.addEventListener('click', function() {
+            const name = this.getAttribute('data-product-name');
+            const rawPrice = parseFloat(this.getAttribute('data-product-raw-price'));
+            const quantity = document.getElementById('quantityInput').value;
+            const notes = document.getElementById('commentsTextarea').value.trim();
+            
+            modalErrorMessage.classList.add('d-none'); // Sembunyikan pesan error
+            
+            if (parseInt(quantity) > 0 && !isNaN(rawPrice)) {
+                addToCart(name, rawPrice, quantity, notes);
+            } else {
+                modalErrorMessage.textContent = 'Kuantitas harus minimal 1 dan merupakan angka yang valid!';
+                modalErrorMessage.classList.remove('d-none');
+            }
+        });
+        
+        // Inisialisasi tampilan keranjang awal
+        renderCart();
+        
+        // Mulai Hitung Mundur
+        lastPromoStatus = isPromoActive(); 
+        updateCountdown(); 
+    });
+</script>
+</body>
+</html>
