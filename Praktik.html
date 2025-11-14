@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio Mahasiswa - ZANTIKA AHDA BANI RIFKIA</title>
+    <!-- Memuat Tailwind CSS CDN untuk styling yang cepat dan responsif -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Menggunakan font Inter secara default */
+        :root {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Style untuk menyembunyikan/menampilkan section */
+        .page-section {
+            display: none;
+            min-height: calc(100vh - 80px); /* Menghitung tinggi layar dikurangi tinggi header */
+            padding-top: 5rem; /* Padding agar konten tidak tertutup header */
+        }
+        /* Style untuk tombol navigasi aktif */
+        .nav-link.active {
+            color: #ffffff; /* Teks putih */
+            background-color: #3b82f6; /* Biru sebagai warna aksen */
+            border-radius: 0.5rem;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Header / Navigasi Bar (Fixed Top) -->
+    <header class="fixed top-0 left-0 w-full bg-white shadow-lg z-10">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Nama / Logo Portofolio -->
+            <div class="text-2xl font-extrabold text-blue-600">
+                ZanPortofolio
+            </div>
+
+            <!-- Navigasi Links -->
+            <div class="space-x-2 sm:space-x-4 flex">
+                <a href="#home" data-section="home" class="nav-link px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 rounded-lg transition duration-150">Home</a>
+                <a href="#about" data-section="about" class="nav-link px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 rounded-lg transition duration-150">About</a>
+                <a href="#project" data-section="project" class="nav-link px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 rounded-lg transition duration-150">Project</a>
+                <a href="#contact" data-section="contact" class="nav-link px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 rounded-lg transition duration-150">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+
+        <!-- 1. Halaman HOME -->
+        <section id="home" class="page-section pt-24" style="display: block;">
+            <div class="bg-white p-8 sm:p-12 rounded-2xl shadow-xl flex flex-col md:flex-row items-center space-y-8 md:space-y-0 md:space-x-12">
+                <!-- Foto Placeholder -->
+                <div class="w-48 h-48 sm:w-64 sm:h-64 flex-shrink-0">
+                    <!-- Gunakan URL gambar Anda di sini. Ini adalah placeholder. -->
+                    <img src="https://github.com/zanahda06-tech/mine/blob/main/download20250902204128.png?raw=true" alt="Foto Profil Mahasiswa" class="rounded-full w-full h-full object-cover border-4 border-blue-200 shadow-lg">
+                </div>
+
+                <!-- Perkenalan Singkat -->
+                <div class="text-center md:text-left">
+                    <h1 class="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-4">
+                        Halo! Saya <span class="text-blue-600">ZANTIKA AHDA BANI RIFKIA</span>.
+                    </h1>
+                    <p class="text-xl text-gray-600 mb-6">
+                        Mahasiswa <span class="font-semibold">MANAJEMEN INFORMATIKA</span> dengan passion dalam pengembangan solusi digital yang inovatif.
+                    </p>
+                    <a href="#project" data-section="project" class="nav-link inline-block bg-blue-600 text-white font-bold py-3 px-6 rounded-lg shadow-md hover:bg-blue-700 transition duration-300">
+                        Lihat Karya Saya →
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Halaman ABOUT -->
+        <section id="about" class="page-section pt-24">
+            <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-8 border-b-4 border-blue-500 pb-2">Profil dan Skill</h2>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Profil -->
+                <div class="lg:col-span-2 bg-white p-8 rounded-xl shadow-lg">
+                    <h3 class="text-2xl font-semibold text-blue-600 mb-4">Tentang Saya</h3>
+                    <p class="text-gray-700 leading-relaxed mb-4">
+                        Saya adalah seorang mahasiswa tingkat akhir di <span class="font-bold">STMIK IKMI</span>, mengambil prodi <span class="font-bold">Manajemen Informatika</span>. Selama masa studi, saya fokus mendalami</span> Design Web, serta memiliki minat kuat dalam teknologi *cloud* dan *data analytics*.
+                    </p>
+                    <p class="text-gray-700 leading-relaxed">
+                        Saya bersemangat untuk menciptakan pengalaman pengguna yang mulus dan solusi *coding* yang bersih, efisien, dan mudah dipelihara.
+                    </p>
+                </div>
+
+                <!-- Skill Set -->
+                <div class="bg-white p-8 rounded-xl shadow-lg">
+                    <h3 class="text-2xl font-semibold text-blue-600 mb-4">Keahlian (Skills)</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">HTML5 & CSS3</span>
+                        <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">XAMPP</span>
+                        <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">Microsoft Office</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Halaman PROJECT -->
+        <section id="project" class="page-section pt-24">
+            <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-8 border-b-4 border-blue-500 pb-2">Kumpulan Karya (Projects)</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <!-- Proyek 1 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden transition transform hover:scale-[1.02] duration-300">
+                    <img src="https://github.com/zanahda06-tech/mine/blob/main/image%20(5).png?raw=true" alt="Project 1: E-Commerce Sederhana" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Aplikasi E-Commerce </h3>
+                        <p class="text-gray-600 mb-4 text-sm">Website belanja online minimalis. Fitur utama: keranjang, Promo, About dan daftar produk .</p>
+                        <a href="#" class="text-blue-600 font-semibold hover:text-blue-800 transition duration-150">Lihat Detail →</a>
+                    </div>
+                </div>
+
+                <!-- Proyek 2 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden transition transform hover:scale-[1.02] duration-300">
+                    <img src="https://github.com/zanahda06-tech/mine/blob/main/image%20(6).png?raw=true" alt="Project 2: Dashboard Analitik" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2"> CV menggunakan HTML</h3>
+                        <p class="text-gray-600 mb-4 text-sm">Praktik membuat desain CV menggunakan HTML.</p>
+                        <a href="#" class="text-blue-600 font-semibold hover:text-blue-800 transition duration-150">Lihat Detail →</a>
+                    </div>
+                </div>
+
+                <!-- Proyek 3 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden transition transform hover:scale-[1.02] duration-300">
+                    <img src="https://github.com/zanahda06-tech/mine/blob/main/image%20(7).png?raw=true" alt="Project 3: Landing Page" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">EduWeb</h3>
+                        <p class="text-gray-600 mb-4 text-sm">Mendesain Web Edukasi untuk pendaftaran kelas.</p>
+                        <a href="#" class="text-blue-600 font-semibold hover:text-blue-800 transition duration-150">Lihat Detail →</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 4. Halaman CONTACT -->
+        <section id="contact" class="page-section pt-24">
+            <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-8 border-b-4 border-blue-500 pb-2">Kontak Saya</h2>
+
+            <div class="bg-white p-8 rounded-xl shadow-lg max-w-xl mx-auto">
+                <p class="text-gray-600 mb-6">Tertarik untuk berkolaborasi atau memiliki pertanyaan? Kirimkan pesan melalui formulir di bawah ini.</p>
+
+                <form id="contactForm">
+                    <div class="mb-4">
+                        <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Nama Lengkap</label>
+                        <input type="text" id="name" name="name" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition duration-150">
+                    </div>
+                    <div class="mb-4">
+                        <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Alamat Email</label>
+                        <input type="email" id="email" name="email" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition duration-150">
+                    </div>
+                    <div class="mb-6">
+                        <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Pesan Anda</label>
+                        <textarea id="message" name="message" rows="4" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition duration-150"></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full bg-blue-600 text-white font-bold py-3 px-4 rounded-lg shadow-md hover:bg-blue-700 transition duration-300">
+                        Kirim Pesan
+                    </button>
+                </form>
+
+                <!-- Message Box for Success/Error -->
+                <div id="messageBox" class="mt-6 p-4 text-sm rounded-lg text-center hidden" role="alert"></div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-4 text-center">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <p>&copy; 2024 [Nama Anda]. Dibuat dengan Tailwind CSS.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sections = document.querySelectorAll('.page-section');
+            const contactForm = document.getElementById('contactForm');
+            const messageBox = document.getElementById('messageBox');
+
+            /**
+             * Fungsi untuk menampilkan section yang dipilih dan memperbarui tombol navigasi aktif.
+             * @param {string} targetSectionId - ID dari section yang akan ditampilkan.
+             */
+            function showSection(targetSectionId) {
+                // Sembunyikan semua section
+                sections.forEach(section => {
+                    section.style.display = 'none';
+                });
+
+                // Tampilkan section yang ditarget
+                const targetSection = document.getElementById(targetSectionId);
+                if (targetSection) {
+                    targetSection.style.display = 'block';
+                }
+
+                // Hapus kelas 'active' dari semua link
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                });
+
+                // Tambahkan kelas 'active' ke link yang sesuai
+                const activeLink = document.querySelector(`.nav-link[data-section="${targetSectionId}"]`);
+                if (activeLink) {
+                    activeLink.classList.add('active');
+                }
+            }
+
+            // 1. Setup Navigasi Klik
+            navLinks.forEach(link => {
+                link.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    const targetSectionId = event.currentTarget.getAttribute('data-section');
+                    if (targetSectionId) {
+                        showSection(targetSectionId);
+                        // Perbarui URL hash tanpa memuat ulang halaman
+                        window.history.pushState(null, null, `#${targetSectionId}`);
+                    }
+                });
+            });
+
+            // 2. Setup Navigasi Hash saat memuat halaman
+            function handleInitialLoad() {
+                // Ambil ID dari hash URL (misalnya: #about -> about)
+                const hash = window.location.hash.replace('#', '');
+                let initialSection = 'home'; // Default ke 'home'
+
+                // Cek apakah hash valid dan ada section dengan ID tersebut
+                if (hash && document.getElementById(hash)) {
+                    initialSection = hash;
+                }
+
+                showSection(initialSection);
+            }
+
+            // Panggil saat halaman pertama kali dimuat
+            handleInitialLoad();
+
+            // 3. Setup Form Submission (Simulasi)
+            contactForm.addEventListener('submit', (event) => {
+                event.preventDefault(); // Mencegah form dikirim secara default
+
+                // Tampilkan pesan loading
+                messageBox.classList.remove('hidden', 'bg-red-100', 'text-red-800');
+                messageBox.classList.add('bg-yellow-100', 'text-yellow-800');
+                messageBox.innerHTML = 'Mengirim pesan...';
+
+                // Simulasikan proses pengiriman data ke server selama 1.5 detik
+                setTimeout(() => {
+                    // Reset styling dan tampilkan pesan sukses
+                    messageBox.classList.remove('bg-yellow-100', 'text-yellow-800');
+                    messageBox.classList.add('bg-green-100', 'text-green-800');
+                    messageBox.innerHTML = '<span class="font-bold">Pesan Berhasil Terkirim!</span> Terima kasih atas kontak Anda. Saya akan membalasnya secepat mungkin.';
+
+                    // Reset form setelah sukses
+                    contactForm.reset();
+
+                    // Sembunyikan pesan sukses setelah 5 detik
+                    setTimeout(() => {
+                        messageBox.classList.add('hidden');
+                    }, 5000);
+
+                }, 1500); // 1.5 detik simulasi
+            });
+        });
+    </script>
+</body>
+</html>
