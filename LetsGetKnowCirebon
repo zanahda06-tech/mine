@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Situs Kartu - Portofolio & Topik Lokal</title>
+  <!-- Tailwind CDN untuk styling cepat -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Tambahan kecil untuk efek glass card */
+    .glass {
+      background: linear-gradient(180deg, rgba(255,255,255,0.7), rgba(255,255,255,0.55));
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border: 1px solid rgba(255,255,255,0.6);
+    }
+    /* Pastikan modal scrollable pada perangkat kecil */
+    .modal-content {
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+    .card-hover:hover {
+        cursor: pointer;
+        transform: translateY(-4px);
+        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-b from-slate-50 to-slate-100 min-h-screen text-slate-800 font-sans">
+  <header class="py-6 shadow-sm bg-white/70 backdrop-blur-sm sticky top-0 z-20">
+    <div class="max-w-6xl mx-auto px-4 flex items-center justify-between">
+      <h1 class="text-2xl font-bold text-slate-900">LetsGetKnowCirebon</h1>
+      <nav class="space-x-6 text-sm font-medium text-slate-600">
+        <a href="#" class="hover:text-sky-600 transition duration-150">Beranda</a>
+        <a href="#about" class="hover:text-sky-600 transition duration-150">Tentang</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 py-12">
+    <section class="mb-12 text-center">
+      <h2 class="text-4xl font-extrabold text-slate-900 mb-4">Eksplorasi Topik Utama</h2>
+      <p class="text-lg text-slate-600">Klik kartu untuk melihat rincian lebih lanjut — portofolio, pariwisata, sejarah, kuliner, dan keagamaan.</p>
+    </section>
+
+    <!-- Grid kartu -->
+    <section id="cards" class="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+
+      <!-- Portofolio (UPDATED LINK) -->
+      <article class="card-hover glass rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300" data-target="portofolio">
+        <img src="https://github.com/zanahda06-tech/mine/blob/main/image%20(10).png?raw=true" onerror="this.onerror=null;this.src='https://placehold.co/1200x400/D1D5DB/1F2937?text=Portofolio';" alt="Portofolio" class="w-full h-40 object-cover rounded-xl mb-4 shadow-md">
+        <h3 class="text-xl font-bold text-slate-900 mb-2">Portofolio</h3>
+        <p class="text-sm text-slate-600 mb-4">Kumpulan pekerjaan, proyek, dan prestasi — cocok untuk menampilkan CV kreatif atau studi kasus.</p>
+        <div class="flex items-center justify-between">
+          <!-- Tombol Portofolio diarahkan ke link eksternal -->
+          <a href="https://zanahda06-tech.github.io/online%20shop.html" target="_blank" class="px-4 py-2 rounded-full bg-sky-500 text-white text-sm font-medium hover:bg-sky-600 transition duration-150 shadow-md">Lihat Rincian</a>
+          <span class="text-xs text-slate-500 bg-slate-100 px-3 py-1 rounded-full">#karir</span>
+        </div>
+      </article>
+
+      <!-- Pariwisata -->
+      <article class="card-hover glass rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300" data-target="pariwisata">
+        <img src="https://github.com/zanahda06-tech/mine/blob/main/alun2.jpg?raw=true" onerror="this.onerror=null;this.src='https://placehold.co/1200x400/D1D5DB/1F2937?text=Pariwisata';" alt="Pariwisata" class="w-full h-40 object-cover rounded-xl mb-4 shadow-md">
+        <h3 class="text-xl font-bold text-slate-900 mb-2">ALUN-ALUN KEJAKSAN</h3>
+        <p class="text-sm text-slate-600 mb-4">Rekomendasi destinasi, panduan perjalanan singkat, dan tips lokal untuk wisatawan.</p>
+        <div class="flex items-center justify-between">
+          <button class="px-4 py-2 rounded-full bg-sky-500 text-white text-sm font-medium hover:bg-sky-600 transition duration-150 shadow-md">Lihat Rincian</button>
+          <span class="text-xs text-slate-500 bg-slate-100 px-3 py-1 rounded-full">#wisata</span>
+        </div>
+      </article>
+
+      <!-- Sejarah -->
+      <article class="card-hover glass rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300" data-target="sejarah">
+        <img src="https://github.com/zanahda06-tech/mine/blob/main/sejarah-kota-cirebon.jpg?raw=true" onerror="this.onerror=null;this.src='https://placehold.co/1200x400/D1D5DB/1F2937?text=Sejarah';" alt="Sejarah" class="w-full h-40 object-cover rounded-xl mb-4 shadow-md">
+        <h3 class="text-xl font-bold text-slate-900 mb-2">SEJARAH KOTA CIREBON</h3>
+        <p class="text-sm text-slate-600 mb-4">Ringkasan sejarah lokal, tokoh penting, dan peristiwa yang membentuk daerah.</p>
+        <div class="flex items-center justify-between">
+          <button class="px-4 py-2 rounded-full bg-sky-500 text-white text-sm font-medium hover:bg-sky-600 transition duration-150 shadow-md">Lihat Rincian</button>
+          <span class="text-xs text-slate-500 bg-slate-100 px-3 py-1 rounded-full">#heritage</span>
+        </div>
+      </article>
+
+      <!-- Kuliner -->
+      <article class="card-hover glass rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300" data-target="kuliner">
+        <img src="https://github.com/zanahda06-tech/mine/blob/main/toha.jpeg?raw=true" onerror="this.onerror=null;this.src='https://placehold.co/1200x400/D1D5DB/1F2937?text=Kuliner';" alt="Kuliner" class="w-full h-40 object-cover rounded-xl mb-4 shadow-md">
+        <h3 class="text-xl font-bold text-slate-900 mb-2">PUSAT KULINER MOH TOHA </h3>
+        <p class="text-sm text-slate-600 mb-4">Wisata kuliner: resep lokal, tempat makan wajib, dan rekomendasi makanan khas.</p>
+        <div class="flex items-center justify-between">
+          <button class="px-4 py-2 rounded-full bg-sky-500 text-white text-sm font-medium hover:bg-sky-600 transition duration-150 shadow-md">Lihat Rincian</button>
+          <span class="text-xs text-slate-500 bg-slate-100 px-3 py-1 rounded-full">#makanan</span>
+        </div>
+      </article>
+
+      <!-- Keagamaan (Card Muludan) -->
+      <article class="card-hover glass rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300" data-target="keagamaan">
+        <img src="https://github.com/zanahda06-tech/mine/blob/main/muluda.jpg?raw=true" onerror="this.onerror=null;this.src='https://placehold.co/1200x400/D1D5DB/1F2937?text=Keagamaan';" alt="Keagamaan" class="w-full h-40 object-cover rounded-xl mb-4 shadow-md">
+        <h3 class="text-xl font-bold text-slate-900 mb-2">MULUDAN </h3>
+        <p class="text-sm text-slate-600 mb-4">Informasi tentang tempat ibadah, tradisi keagamaan, dan kalender acara keagamaan lokal.</p>
+        <div class="flex items-center justify-between">
+          <button class="px-4 py-2 rounded-full bg-sky-500 text-white text-sm font-medium hover:bg-sky-600 transition duration-150 shadow-md">Lihat Rincian</button>
+          <span class="text-xs text-slate-500 bg-slate-100 px-3 py-1 rounded-full">#spiritual</span>
+        </div>
+      </article>
+
+    </section>
+
+    <!-- Contoh section target untuk tiap topik - Disembunyikan, akan dimuat ke Modal -->
+    <section class="mt-12 space-y-8 hidden">
+      <article id="portofolio">
+        <h3 class="text-2xl font-semibold mb-2">Portofolio Rinci</h3>
+        <p class="text-slate-700">Bagian ini bisa diisi dengan galeri proyek, tautan ke GitHub, studi kasus, atau file CV yang lengkap. Karena tombol di kartu Portofolio sudah mengarah ke tautan eksternal, bagian detail ini bisa Anda gunakan untuk memberikan ringkasan singkat.</p>
+      </article>
+
+      <!-- PARIWISATA - KONTEN DARI PENGGUNA -->
+      <article id="pariwisata">
+        <h3 class="text-2xl font-semibold mb-2">Alun-Alun Kejaksan, Pusat Sejarah Cirebon</h3>
+        <p class="text-slate-700">Alun-Alun Kejaksan merupakan pusat bersejarah dan ruang publik vital di Cirebon yang namanya diambil dari jabatan Pangeran Kejaksan (Syarif Abdurrahim), seorang jaksa atau pengurus hukum agama pada masa Kesultanan Cirebon di abad ke-15. Sejak awal, alun-alun ini berfungsi sebagai pusat kegiatan sosial, politik, dan upacara kenegaraan Kesultanan, dan kemudian menjadi saksi penting sejarah modern, termasuk perlawanan terhadap kolonial Belanda dan lokasi pembacaan Teks Proklamasi di Cirebon. Setelah mengalami revitalisasi besar yang selesai pada tahun 2021, alun-alun ini kini tampil modern dengan fasilitas lengkap, termasuk basement parkir, Gapura Candi Bentar, dan Plaza Memorial, menjadikannya ruang publik terpadu yang berdampingan dengan Masjid Raya At-Taqwa.</p>
+        <div class="mt-4 p-4 bg-slate-100 rounded-lg shadow-inner">
+          <h4 class="font-semibold text-lg text-slate-800 mb-1 flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-sky-600" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+            </svg>
+            Lokasi Maps:
+          </h4>
+          <p class="text-slate-700">Jl. Siliwangi No.01, Kebonbaru, Kec. Kejaksan, Kota Cirebon, Jawa Barat 45124</p>
+        </div>
+      </article>
+
+      <!-- SEJARAH - KONTEN DARI PENGGUNA -->
+      <article id="sejarah">
+        <h3 class="text-2xl font-semibold mb-2">Sejarah Kota Cirebon: Dari Dukuh Nelayan hingga Kota Wali</h3>
+        <p class="text-slate-700">Sejarah Kota Cirebon dimulai dari dukuh nelayan bernama Caruban Nagari (Negeri Campuran) yang tumbuh pesat berkat lokasinya sebagai pelabuhan penting yang dipimpin oleh Ki Gedeng Alang-Alang. Kota ini mencapai puncak kejayaan dan kemerdekaannya dari Pajajaran pada tahun 1482 M di bawah kepemimpinan Sunan Gunung Jati (Syarif Hidayatullah), menjadikannya pusat utama penyebaran Islam dan peradaban di Jawa Barat. Setelah masa keemasan, Kesultanan Cirebon terpecah menjadi beberapa keraton dan kemudian berada di bawah kendali kolonial Belanda yang mengubahnya menjadi Gemeente Cheribon. Saat ini, Cirebon dikenal sebagai "Kota Udang" dan "Kota Wali", sebuah kota multikultural yang mewarisi kekayaan budaya perpaduan Sunda, Jawa, Tionghoa, dan Islam.</p>
+        <div class="mt-4 p-4 bg-slate-100 rounded-lg shadow-inner text-sm">
+          <h4 class="font-semibold text-lg text-slate-800 mb-1 flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-sky-600" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L14 4.586A2 2 0 0012.586 4H6zm.942 6.007a1 1 0 10-1.884.757l.006.009L7.433 11H12v2H7a1 1 0 000 2h5a1 1 0 001-1v-4a1 1 0 00-1-1H7.433L5.064 8.773z" clip-rule="evenodd" />
+            </svg>
+            Poin Penting:
+          </h4>
+          <ul class="list-disc list-inside space-y-1 ml-4 text-slate-700">
+            <li>**Nama Asli:** Caruban Nagari (Negeri Campuran).</li>
+            <li>**Pendiri/Tokoh Kunci:** Ki Gedeng Alang-Alang dan Sunan Gunung Jati.</li>
+            <li>**Tahun Kemerdekaan:** 1482 M (dari Pajajaran).</li>
+            <li>**Julukan Modern:** Kota Udang dan Kota Wali.</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- KULINER - KONTEN DARI PENGGUNA -->
+      <article id="kuliner">
+        <h3 class="text-2xl font-semibold mb-2">Pusat Kuliner Moh. Toha: Surga Kuliner Malam Cirebon</h3>
+        <p class="text-slate-700">Jalan Moh. Toha sebagai pusat kuliner merupakan fenomena perkembangan *street food* modern di Cirebon yang didukung oleh keberadaan pedagang legendaris seperti Bubur Ayam Moh Toha yang telah berdiri sejak 1967. Dalam beberapa tahun terakhir, kawasan ini mengalami transformasi signifikan, di mana ratusan pedagang kaki lima (PKL) memadati jalan tersebut setiap sore hingga malam, menjual aneka kuliner khas dan jajanan, sehingga menciptakan ekosistem "Surga Kuliner Malam" yang ramai dan menarik.</p>
+        <p class="text-slate-700 mt-3">Melihat potensi besar ini, pemerintah setempat mulai mengarahkan upaya penataan dan formalisasi kawasan tersebut agar menjadi Sentra Kuliner Resmi Kota Cirebon, yang bertujuan untuk meningkatkan pariwisata, menertibkan PKL, sekaligus mengatasi isu lalu lintas dan kebersihan yang ditimbulkan oleh tingginya antusiasme masyarakat.</p>
+        <div class="mt-4 p-4 bg-slate-100 rounded-lg shadow-inner text-sm">
+          <h4 class="font-semibold text-lg text-slate-800 mb-1 flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-sky-600" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M10 2a8 8 0 100 16 8 8 0 000-16zM6 9a2 2 0 114 0 2 2 0 01-4 0zM12 9a2 2 0 114 0 2 2 0 01-4 0zM7 15a1 1 0 001 1h4a1 1 0 001-1v-.5a.5.5 0 00-.5-.5h-5a.5.5 0 00-.5.5V15z" />
+            </svg>
+            Karakteristik Utama:
+          </h4>
+          <ul class="list-disc list-inside space-y-1 ml-4 text-slate-700">
+            <li>**Ikon:** Bubur Ayam Moh Toha (berdiri sejak 1967).</li>
+            <li>**Waktu Operasi:** Sore hingga malam hari.</li>
+            <li>**Status:** Sedang dalam proses penataan menjadi Sentra Kuliner Resmi.</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- KEAGAMAAN - KONTEN BARU DARI PENGGUNA -->
+      <article id="keagamaan">
+        <h3 class="text-2xl font-semibold mb-2">Muludan: Tradisi Maulid Nabi dan Pawai Panjang Jimat</h3>
+        <p class="text-slate-700">Muludan adalah perayaan sakral Maulid Nabi Muhammad SAW di Cirebon yang berlangsung selama satu bulan penuh di bulan Rabiul Awal, berakar kuat pada masa Sunan Gunung Jati sebagai metode dakwah kultural.</p>
+        <p class="text-slate-700 mt-3">Inti dari perayaan ini adalah **Pawai Panjang Jimat**, sebuah prosesi adat di mana pusaka-pusaka Keraton Cirebon (terutama piring peninggalan) diarak dan dicuci sebagai bentuk penghormatan, dan air bekas pencuciannya dipercaya membawa berkah. Bersamaan dengan ritual sakral ini, diselenggarakan pula **Pasar Malam Muludan atau Sekaten** yang meriah selama sebulan penuh di sekitar Alun-Alun Kasepuhan, menjadikannya pusat hiburan, ekonomi, dan pertemuan rakyat, menunjukkan perpaduan harmonis antara tradisi Islam dan budaya lokal Cirebon.</p>
+        <div class="mt-4 p-4 bg-slate-100 rounded-lg shadow-inner text-sm">
+          <h4 class="font-semibold text-lg text-slate-800 mb-1 flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-sky-600" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L14 4.586A2 2 0 0012.586 4H6zm.942 6.007a1 1 0 10-1.884.757l.006.009L7.433 11H12v2H7a1 1 0 000 2h5a1 1 0 001-1v-4a1 1 0 00-1-1H7.433L5.064 8.773z" clip-rule="evenodd" />
+            </svg>
+            Detail Perayaan:
+          </h4>
+          <ul class="list-disc list-inside space-y-1 ml-4 text-slate-700">
+            <li>**Periode:** Satu bulan penuh (Bulan Rabiul Awal).</li>
+            <li>**Acara Inti:** Pawai Panjang Jimat (Pencucian Pusaka Keraton).</li>
+            <li>**Kegiatan Pendukung:** Pasar Malam Muludan/Sekaten.</li>
+          </ul>
+        </div>
+      </article>
+    </section>
+
+  </main>
+
+  <footer id="about" class="py-6 text-center text-sm text-slate-500 border-t border-slate-200 mt-12">
+    © 2024 Nama Anda — Dibuat dengan sederhana. Ubah sesuai kebutuhan.
+  </footer>
+
+  <!-- Modal Detail -->
+  <div id="detailModal" class="fixed inset-0 z-50 hidden bg-black bg-opacity-60 flex items-center justify-center p-4">
+    <div class="modal-content bg-white rounded-xl shadow-2xl w-full max-w-2xl transform transition-all duration-300 p-6 sm:p-8">
+      <div class="flex justify-between items-start mb-4">
+        <h3 id="modalTitle" class="text-2xl font-bold text-slate-900">Judul Modal</h3>
+        <button id="closeModal" class="text-slate-500 hover:text-slate-800 transition">
+          <!-- Ikon X (Close) dari SVG -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+      <div id="modalBody" class="text-slate-700 space-y-4">
+        <!-- Konten detail dimuat di sini -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const cards = document.querySelectorAll('#cards article');
+      const modal = document.getElementById('detailModal');
+      const modalTitle = document.getElementById('modalTitle');
+      const modalBody = document.getElementById('modalBody');
+      const closeModalButton = document.getElementById('closeModal');
+      const body = document.body;
+
+      // Fungsi untuk menampilkan modal
+      const openModal = (targetId) => {
+        const contentSection = document.getElementById(targetId);
+
+        if (contentSection) {
+          // 1. Set Judul Modal (Ambil dari H3 di dalam contentSection)
+          const titleElement = contentSection.querySelector('h3');
+          modalTitle.textContent = titleElement ? titleElement.textContent : 'Detail Topik';
+
+          // 2. Set Konten Modal (Ambil semua childNodes dari contentSection)
+          // Kosongkan modalBody terlebih dahulu
+          modalBody.innerHTML = '';
+          
+          // Kloning dan masukkan semua elemen kecuali judul (H3 pertama)
+          Array.from(contentSection.children).forEach((child, index) => {
+            if (child.tagName.toLowerCase() !== 'h3' || index !== 0) {
+              modalBody.appendChild(child.cloneNode(true));
+            }
+          });
+
+          // 3. Tampilkan Modal
+          modal.classList.remove('hidden');
+          // Mencegah scrolling di body saat modal terbuka
+          body.classList.add('overflow-hidden');
+        }
+      };
+
+      // Fungsi untuk menyembunyikan modal
+      const closeModal = () => {
+        modal.classList.add('hidden');
+        body.classList.remove('overflow-hidden');
+      };
+
+      // Event listener untuk setiap kartu
+      cards.forEach(card => {
+        card.addEventListener('click', (event) => {
+          // Pastikan klik pada tautan atau tombol tidak memicu modal ganda
+          // Ini memastikan tautan Portofolio tetap berfungsi sebagai tautan.
+          if (event.target.closest('a') || event.target.tagName.toLowerCase() === 'button') {
+            return; // Biarkan link/button bekerja secara normal
+          }
+          
+          const targetId = card.getAttribute('data-target');
+          if (targetId) {
+            openModal(targetId);
+          }
+        });
+      });
+
+      // Event listener untuk tombol tutup modal
+      closeModalButton.addEventListener('click', closeModal);
+
+      // Event listener untuk menutup modal saat mengklik di luar konten modal
+      modal.addEventListener('click', (event) => {
+        // Jika yang diklik adalah modal itu sendiri (bukan konten modal)
+        if (event.target === modal) {
+          closeModal();
+        }
+      });
+
+      // Event listener untuk menutup modal dengan tombol ESC
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && !modal.classList.contains('hidden')) {
+          closeModal();
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
